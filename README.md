@@ -1,1 +1,0 @@
-# La-genesi-di-una-scoperta-scientifica
