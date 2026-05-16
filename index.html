@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genesi di una scoperta scientifica</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .font-title { font-family: 'Playfair Display', serif; }
+
+    .hover-paragraph {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    }
+
+    .hover-paragraph:hover {
+    background-color: rgba(79, 70, 229, 0.05); 
+    transform: translateX(4px);
+    }
+
+    .media-focus {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .media-focus:hover {
+    transform: scale(1.01);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .ref-item {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .ref-item:hover {
+    transform: translateX(6px);
+    background-color: rgba(79, 70, 229, 0.04);
+    }
+
+    .hero {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: heroReveal 0.9s ease-out forwards;
+    animation-delay: 0.2s;
+    }
+
+    @keyframes heroReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    /* ================= SEZIONI ================= */
+
+    const revealElements = document.querySelectorAll(".reveal-section");
+
+    revealElements.forEach(el => {
+      el.classList.add(
+        "opacity-0",
+        "translate-y-8",
+        "transition-all",
+        "duration-700",
+        "ease-out"
+      );
+    });
+
+    const revealObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("opacity-0", "translate-y-8");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    requestAnimationFrame(() => {
+      revealElements.forEach(el => revealObserver.observe(el));
+    });
+
+    /* ================= LINEE TITOLI ================= */
+
+    const lines = document.querySelectorAll(".title-line");
+
+    lines.forEach(line => {
+      line.classList.add(
+        "transform",
+        "origin-left",
+        "scale-x-0",
+        "transition-transform",
+        "duration-700",
+        "ease-out"
+      );
+    });
+
+    const lineObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("scale-x-0");
+            lineObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    requestAnimationFrame(() => {
+      lines.forEach(line => lineObserver.observe(line));
+    });
+
+  });
+</script>
+
+<body class="bg-neutral-50 text-neutral-800 leading-relaxed">
+
+  <!-- ================= HERO ================= -->
+  <header class="min-h-screen flex items-center justify-center text-center px-6">
+    <div id="hero" class="hero max-w-3xl">
+      <h1 class="md:text-7xl text-4xl font-bold mb-6 font-title">
+        Genesi di una scoperta scientifica
+      </h1>
+      <p class="text-lg text-neutral-600">
+        Racconti, dialoghi e riflessioni sulle grandi scoperte scientifiche: dalla nascita alla loro influenza sulla società.
+      </p>
+    </div>
+  </header>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="sticky top-0 z-40 bg-white border-y border-neutral-200">
+    <ul class="flex justify-center gap-8 py-4 text-sm font-medium">
+      <li>
+        <a href="#introduzione"
+           class="relative after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                  after:w-0 after:bg-indigo-600 after:transition-all after:duration-300
+                  hover:after:w-full">
+          Articolo
+        </a>
+      </li>
+      <li>
+        <a href="#dibattito"
+           class="relative after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                  after:w-0 after:bg-indigo-600 after:transition-all after:duration-300
+                  hover:after:w-full">
+          Episodio-1
+        </a>
+      </li>
+      <li>
+        <a href="#racconto"
+           class="relative after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                  after:w-0 after:bg-indigo-600 after:transition-all after:duration-300
+                  hover:after:w-full">
+          Episodio-2
+        </a>
+      </li>
+      <li>
+        <a href="#bibliografia"
+           class="relative after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                  after:w-0 after:bg-indigo-600 after:transition-all after:duration-300
+                  hover:after:w-full">
+          Bibliografia
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+<!-- ================= INTRODUZIONE ================= -->
+<section id="introduzione" class="reveal-section bg-slate-50 py-24 px-6">
+  <article class="max-w-3xl mx-auto">
+
+    <header class="mb-12">
+      <h1 class="font-title text-3xl md:text-4xl font-semibold mb-4">
+        Scoperta scientifica: processo o contingenza?
+      </h1>
+      <p class="text-slate-500">
+        Mettere in discussione i paradigmi per far avanzare la scienza
+      </p>
+      <div class="title-line mt-6 h-px w-24 bg-indigo-600"></div>
+    </header>
+
+    <div class="prose prose-slate max-w-none">
+
+      <p class="text-lg leading-relaxed">
+        <span class="float-left text-6xl font-title leading-none pr-3 text-indigo-600">
+          C
+        </span>
+        ome nasce una scoperta scientifica? È un processo continuo dettato dal progresso umano o piuttosto
+        è un evento puntiforme atto a risolvere una necessità contingente? Gli epistemologi del XX secolo si sono posti 
+        questo interrogativo apportando diversi contributi.
+        <br /><br />
+      </p>
+
+      <p class="hover-paragraph">
+        Il filosofo statunitense Thomas Kuhn riprese il lavoro di K. Popper, elaborando una teoria secondo
+        la quale lo sviluppo storico della scienza sarebbe diviso in periodi di scienza normale, nei quali si elabora un paradigma, 
+        e periodi di scienza straordinaria, che portano allo scardinamento del sistema stabilito e alla nascita di un nuovo paradigma. 
+        Ciò che il filosofo sottolinea è come il paradigma non sia un momento di stasi, ma piuttosto una rifinitura delle teorie vigenti; 
+        è quindi considerabile progresso? Luca Giuliano porta il suo contributo, sostenendo come spesso rimanere fissi negli schemi mentali 
+        consolidati sia ciò che rallenta il progredire della scienza. Per il filosofo, la scoperta scientifica deve partire da un elemento irrazionale, 
+        il desiderio di scoperta, la ricerca di spiegazioni e il processo per tentativi ed errori. Ispirandosi a K. Popper, Giuliano afferma come non si possa 
+        stabilire un processo razionale che conduca a scoperte scientifiche, ma che al contrario queste siano frutto di un “epistemologia dei problemi”.
+      </p>
+
+      <blockquote class="border-l-4 border-indigo-600 pl-6 my-10 italic text-slate-600">
+        «Una scienza è tanto più viva quanto più è in grado di suscitare nuovi problemi perché così facendo ci permette 
+        di allargare lo sguardo oltre l’orizzonte.» <br /> 
+        - Luca Giuliano
+      </blockquote>
+
+      <p class="hover-paragraph">
+        Ciò che l’epistemologia pone come base teoretica, è ben riscontrabile nel discorso al Premio Nobel di Max Planck del 1918, dove il fisico espone il processo che lo ha condotto alla prima formulazione di ciò che 
+        sarebbe diventata la teoria quantistica. Planck partì da un problema: la distribuzione dell’energia nella radiazione termica, studiata attraverso 
+        oscillatori lineari di Hertz circondati da una superficie sferica riflettente. Secondo le leggi dell’elettrostatica classica ciò 
+        avrebbe portato alla formazione di una radiazione stazionaria, tuttavia con il procedere degli esperimenti Planck si rende conto che qualcosa 
+        sembra non funzionare: il risonatore assorbe solo le stesse frequenze che emette, portando all’ipotesi di un effetto irreversibile, anche se ciò 
+        andrebbe contro la dinamica classica, come sottolinea L. Boltzmann. Planck, prova quindi ad approcciare il problema da un altro punto di vista: la 
+        termodinamica e in particolare il valore assoluto dell’entropia. Ciò lo portò a poter formulare il “quantum of action” come 
+        una costante confermata da altri scienziati tra i quali A. Einstein o N. Bohr.
+      </p>
+
+      <blockquote class="border-l-4 border-indigo-600 pl-6 my-10 italic text-slate-600">
+        «A light came into the darkness, and a new undreamed-of perspective opened up before me.» <br />
+        «h = 6,52 × 10⁻²⁷ erg·s.» <br /> 
+        - Max Planck
+      </blockquote>
+
+      <p class="hover-paragraph">
+        Quello che è più interessante del discorso di Planck sono alcune sue riflessioni sul processo di elaborazione della teoria. 
+        Egli nota come la sua scoperta sia frutto di un problema, una “falla” nel sistema vigente, ciò che Kuhn avrebbe definito il paradigma. 
+        Inoltre, il “quanto di azione” permise ad altri fisici di semplificare le loro teorie, tra le quali si cita il calore specifico dei gas, 
+        l’emissione di fotoni o il modello atomico di Bohr. Infine, il fisico ammette la difficoltà ad inserire il “quanto di azione” nella 
+        teoria classica, riconoscendo che fino a poco tempo prima le sue ipotesi sarebbero state sicuramente rifiutate da ogni fisico. 
+        Nella conclusione Planck ricorda che l’introduzione del “quanto di azione” è ben distante dalla formulazione di una teoria quantistica completa, 
+        lasciando aperti molti interrogativi; per esempio, cosa accade all’energia di un fotone dopo la sua completa emissione? Ritornando al quesito che ci siamo 
+        inizialmente posti, appare ora una possibile risposta. Il lavoro di Planck, abbinato alle ricerche epistemologiche di Giuliano, Kuhn e Popper, 
+        sembrano convergere su un punto: affinché avvenga il progresso scientifico serve mettere costantemente in discussione le teorie vigenti, individuare 
+        i problemi e cercare soluzioni innovative, anche a costo di uscire dagli schemi stabiliti.
+      </p>
+
+    </div>
+  </article>
+</section>
+
+<!-- ================= EPISODIO 1 ================= -->
+<section id="dibattito" class="reveal-section bg-white py-24 px-6">
+  <article class="max-w-3xl mx-auto">
+
+    <header class="mb-12">
+      <h2 class="font-title text-3xl md:text-4xl font-semibold mb-4">
+        Quando l'algoritmo fa arte
+      </h2>
+      <p class="text-slate-500">
+        Intelligenza Artificiale tra arte e letteratura
+      </p>
+      <div class="title-line mt-6 h-px w-24 bg-indigo-600"></div>
+    </header>
+
+    <p class="mb-10 text-slate-700 leading-relaxed">
+      Il grande progresso che la scienza sta compiendo nel campo dell'IA, sta rivoluzionando il mondo dell'arte. 
+      In questa puntata esploreremo le implicazioni etiche, con uno sguardo sulla letteratura, sull'arte e sul lavoro.
+      Verrà mai un tempo in cui le macchine supereranno la creatività umana? 
+    </p>
+
+    <div class="media-focus aspect-video rounded-xl overflow-hidden shadow-md">
+      <div class="aspect-video rounded-xl overflow-hidden shadow-md">
+        <iframe
+          class="w-full h-full"
+          src="https://www.youtube.com/embed/MxKojXh89OA"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+  </article>
+</section>
+
+<!-- ================= EPISODIO 2 ================= -->
+<section id="racconto" class="reveal-section bg-slate-50 py-24 px-6">
+  <article class="max-w-3xl mx-auto">
+
+    <header class="mb-12">
+      <h2 class="font-title text-3xl md:text-4xl font-semibold mb-4">
+        L'intuizione da sola è sufficiente?
+      </h2>
+      <p class="text-slate-500">
+        Serendipità, società e il destino delle scoperte scientifiche
+      </p>
+      <div class="title-line mt-6 h-px w-24 bg-indigo-600"></div>
+    </header>
+
+    <p class="mb-10 text-slate-700 leading-relaxed">
+      In questa puntata analizziamo come nascono davvero le scoperte scientifiche. Attraverso il concetto di serendipità
+      scopriamo come il caso e l'errore abbiano avuto un ruolo fondamentale nella storia della scienza.
+      Con l'intervento in inglese del nostro ospite, approfondiamo inoltre il rapporto tra scienza, società e dialogo culturale.
+    </p>
+
+    <div class="media-focus aspect-video rounded-xl overflow-hidden shadow-md">
+      <div class="aspect-video rounded-xl overflow-hidden shadow-md">
+        <iframe
+          class="w-full h-full"
+          src="https://www.youtube.com/embed/AXycS2aGKJ0"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+  </article>
+</section>
+
+<!-- ================= BIBLIOGRAFIA ================= -->
+<section id="bibliografia" class="reveal-section bg-white py-24 px-6">
+  <article class="max-w-3xl mx-auto">
+
+    <header class="mb-12">
+      <h2 class="font-title text-3xl md:text-4xl font-semibold mb-4">
+        Bibliografia e fonti
+      </h2>
+      <p class="text-slate-500">
+        Testi, articoli e materiali di riferimento
+      </p>
+      <div class="title-line mt-6 h-px w-24 bg-indigo-600"></div>
+    </header>
+
+    <ul class="space-y-4">
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">L. Rossi – A. Ricci</span>,
+                <em>Dalla penicillina all’antibiotico-resistenza</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">F. M. Labricciosa</span>,
+                <em>La Penicillina, formidabile arma contro i batteri</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">F. Sgambato et al.</span>,
+                <em>Sepino, Vincenzo Tiberio e il pozzo</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">M. Tamburello – G. Villone</span>,
+                <em>V. Tiberio e la mancata produzione industriale dell’antibiotico</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">T. Pievani</span>,
+                <em>Scienza, il valore della serendipità</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">C. Di Lucente</span>,
+                <em>La serendipità in medicina</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">M. Planck</span>,
+                <em>The Genesis and Present State of Development of  the Quantum Theory</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">T. S. Kuhn</span>,
+                <em>Scienza normale e scienza straordinaria</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">L. Giuliano</span>,
+                <em>La logica della scoperta nelle scienze sociali </em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">P. Levi</span>,
+                <em>Cerio</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">P. Levi</span>,
+                <em>Il versificatore</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">P. Levi</span>,
+                <em>L'ordine a buon mercato</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">C. P. Snow</span>,
+                <em>The two cultures, cap. 1</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">C. P. Snow</span>,
+                <em>The two cultures, cap. 3</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">B. Cucinelli</span>,
+                <em>Lettera della Artificiale e Umana Intelligenza</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">G. A. Arnesano</span>,
+                <em>L’Intelligenza artificiale può ridefinire il  concetto di creatività artistica?</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">A. Concas</span>,
+                <em>Arte Generativa e Algoritmi: il futuro della  creatività? </em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">A. Concas</span>,
+                <em>Intelligenza Artificiale per il mercato dell’arte</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium">C. Perry</span>,
+                <em>Come funziona la generazione di immagini AI? L'arte dell'IA spiegata</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium"></span>
+                <em>La Genesi non è in contraddizione con la scienza, intervista a Vincenzo Balzani</em>
+            </li>
+            <li class="ref-item border-l-4 border-indigo-600 pl-4">
+                <span class="font-medium"></span>
+                <em>La nascita della Royal Society</em>
+            </li>
+        </ul>
+
+  </article>
+</section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="py-8 text-center text-sm text-neutral-500 bg-neutral-100">
+    Progetto interdisciplinare – a.s. 2025/26 <br />
+    <em>Giorgia Porcellati - Riccardo Raciti - Sara Ramelli - Alessandro Mazzucchetti</em>
+  </footer>
+
+</body>
+</html>
